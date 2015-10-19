@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+<% if current_user && current_user.role == "manager" %>
+  <h1>Accepted Leaves</h1>
+<% end %>
+
+<%= render partial: 'leaves', locals: {scoots: @scoots} %>

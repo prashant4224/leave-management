@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @scoot.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @scoot.body %>
+</p>
+
+<p>
+  <strong>Leave from:</strong>
+  <%= @scoot.leave_from %>
+</p>
+
+<p>
+  <strong>Leave to:</strong>
+  <%= @scoot.leave_to %>
+</p>
+
+<p>
+  <strong>Total Working days:</strong>
+<%= "#{@scoot.duration} Days" %><br>
+</p>
+<% if can? :manage, current_user %>
+<span>
+	<%= form_for @scoot, method: :put, html: {style: "padding: 5px;"} do |f| %>
+		<%#= f.hidden_field :state, value: "accept" %>
+		<%= f.text_field :reason %>
+		<%= f.submit "Accept" %>
+		<%= f.submit "Reject" %>
+	<% end %>
+</span>
+
+	<%= link_to 'Edit', edit_scoot_path(@scoot) %> |
+<% end %>
+<%= link_to 'Back', scoots_path %>

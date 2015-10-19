@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<% if current_user && current_user.role == "manager" %>
+<%= link_to 'All Accepted leaves', accepted_scoots_path %>
+  <%= link_to 'All Rejected Leaves', rejected_scoots_path %>
+  
+  <h1>Pending Leave Requests</h1>
+<% else %>
+  <h1>My Leave Requests</h1>
+<% end %>
+
+<%= render partial: 'leaves', locals: {scoots: @scoots} %>
+
+<br>
+<% if can? :create, current_user %>
+  <%= link_to 'New Scoot', new_scoot_path %>
+<% end %>
